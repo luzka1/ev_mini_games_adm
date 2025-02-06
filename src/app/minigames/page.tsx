@@ -1,6 +1,7 @@
 import React from "react";
 import { PageLayout } from "../pageLayout";
 import { PlusIcon } from "lucide-react";
+import { CardsGroup } from "@/components/CardsGroup/CardsGroup";
 
 export default function Minigames() {
   return (
@@ -32,16 +33,7 @@ const MinigamesArea = () => {
         </div>
       </div>
 
-      <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))]">
-        {Array.from({ length: 7 }).map((_, index) => (
-          <div
-            key={index}
-            className="rounded-xl bg-blue-500 h-[350px] w-full flex items-end shadow-xl"
-          >
-            <div className="bg-white h-1/3 w-full rounded-b-xl"></div>
-          </div>
-        ))}
-      </div>
+      <CardsGroup />
     </div>
   );
 };

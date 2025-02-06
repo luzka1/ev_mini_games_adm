@@ -13,7 +13,7 @@ import Link from "next/link";
 
 const items = [
   { icon: <LayoutDashboard />, label: "Dashboard", href: "/" },
-  { icon: <Users />, label: "Usuários", href: "/help" },
+  { icon: <Users />, label: "Usuários", href: "/users" },
   { icon: <Gamepad2 />, label: "Minigames", href: "/minigames" },
 ];
 

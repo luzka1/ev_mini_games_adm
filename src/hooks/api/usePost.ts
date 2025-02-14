@@ -1,22 +1,21 @@
 import { post } from "@/services/modules/post";
 
+interface PostProps<T> {
+  endpoint: string;
+  data: T;
+}
+
 const usePost = () => {
-  // Hook para realizar o envio de dados
+  // Hook para atualização de dados
 
-  let response = null;
-  let statusCode = null;
-
-  const postData = async (endpoint: string, data: any) => {
+  const postData = async <T>({ endpoint, data }: PostProps<T>) => {
     // Simulação de 1,5s de carregamento
-    await new Promise(resolve => setTimeout(resolve, 1450));
-
+    await new Promise((resolve) => setTimeout(resolve, 1450));
     try {
-      const result: any = await post(endpoint, data);
-      response = result ? result.data : null;
-      statusCode = result ? result.status : null;
-      return { response, statusCode };
-    } catch (err) {
-      console.log(err);
+      const result = await post({ endpoint, data });
+      return result;
+    } catch (error) {
+      console.log(error);
     }
   };
 

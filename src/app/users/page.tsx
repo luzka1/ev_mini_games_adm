@@ -1,39 +1,28 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { PageLayout } from "../pageLayout";
 import { CardsGroup } from "@/components/CardsGroup/CardsGroup";
-
-const users = [
-  {
-    game_id: "q1",
-    game_name: "name",
-    game_color: "#e623e3",
-    game_desc:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error suscipit eaque amet ipsam soluta consequuntur rerum aliquam hic adipisci.",
-    users: [
-      {
-        name: 1,
-        birth: 1,
-        email: 1,
-        gender: 1,
-      },
-    ],
-  },
-];
+import { useGamesContext } from "@/contexts/GamesContext";
 
 export default function Users() {
   return (
-    <>
-      <PageLayout>
-        <UsersArea />
-      </PageLayout>
-    </>
+    <PageLayout>
+      <UsersArea />
+    </PageLayout>
   );
 }
 
 const UsersArea = () => {
+  const { games, fetchGamesData } = useGamesContext();
+
+  useEffect(() => {
+    fetchGamesData();
+  }, []);
+
   return (
     <div className="w-full h-full pt-8 flex flex-col gap-8">
-      <div className="">
+      <div>
         <h1 className="text-3xl font-bold">
           Atividades dos usuários nos jogos
         </h1>
@@ -43,7 +32,7 @@ const UsersArea = () => {
         </span>
       </div>
 
-      <CardsGroup props={users} />
+      <CardsGroup props={games} />
     </div>
   );
 };

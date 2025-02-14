@@ -1,15 +1,32 @@
 import { api } from "@/lib/api";
 
-async function post(endpoint: string, data: unknown) {
-  // Função POST (Envio de dados para api);
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+}
 
-  let response = null;
+interface PostProps<T> {
+  endpoint: string;
+  data: T;
+}
 
+async function post<T>({
+  endpoint,
+  data,
+}: PostProps<T>): Promise<ApiResponse<T>> {
+  // Função POST (Envio de dados)
   try {
-    response = await api.post(endpoint, data);
-    return response;
+    const response = await api.post(endpoint, data);
+
+    const res: ApiResponse<T> = {
+      data: response.data,
+      status: response.status,
+    };
+
+    return res;
   } catch (error) {
-    return error;
+    console.error("Erro ao fazer requisição:", error);
+    throw new Error("Erro ao enviar os dados");
   }
 }
 

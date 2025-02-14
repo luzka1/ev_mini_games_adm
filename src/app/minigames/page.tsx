@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { PageLayout } from "../pageLayout";
 import { PlusIcon } from "lucide-react";
 import { CardsGroup } from "@/components/CardsGroup/CardsGroup";
+import { useGamesContext } from "@/contexts/GamesContext";
 
 export default function Minigames() {
   return (
@@ -14,6 +17,12 @@ export default function Minigames() {
 }
 
 const MinigamesArea = () => {
+  const { games, fetchGamesData } = useGamesContext();
+
+  useEffect(() => {
+    fetchGamesData();
+  }, []);
+
   return (
     <div className="w-full h-full pt-8 flex flex-col gap-8">
       <div className="w-full flex justify-between">
@@ -33,7 +42,7 @@ const MinigamesArea = () => {
         </div>
       </div>
 
-      <CardsGroup />
+      <CardsGroup props={games} />
     </div>
   );
 };

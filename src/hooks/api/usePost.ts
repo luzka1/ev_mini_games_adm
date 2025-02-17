@@ -1,14 +1,14 @@
 import { post } from "@/services/modules/post";
 
-interface PostProps<T> {
+interface PostProps {
   endpoint: string;
-  data: T;
+  data: any;
 }
 
 const usePost = () => {
   // Hook para atualização de dados
 
-  const postData = async <T>({ endpoint, data }: PostProps<T>) => {
+  const postData = async ({ endpoint, data }: PostProps) => {
     // Simulação de 1,5s de carregamento
     await new Promise((resolve) => setTimeout(resolve, 1450));
     try {

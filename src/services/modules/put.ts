@@ -1,11 +1,11 @@
 import { api } from "@/lib/api";
 
-interface PutProps<T> {
+interface PutProps {
   endpoint: string;
-  data: T;
+  data: any;
 }
 
-async function put<T>({ endpoint, data }: PutProps<T>) {
+async function put({ endpoint, data }: PutProps) {
   // Função PUT (edição de dados)
 
   try {

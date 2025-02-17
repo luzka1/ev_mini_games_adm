@@ -1,14 +1,14 @@
 import { put } from "@/services/modules/put";
 
-interface PutProps<T> {
+interface PutProps {
   endpoint: string;
-  data: T;
+  data: any;
 }
 
 const usePut = () => {
   // Hook para atualização de dados
 
-  const putData = async <T>({ endpoint, data }: PutProps<T>) => {
+  const putData = async ({ endpoint, data }: PutProps) => {
     // Simulação de 1,5s de carregamento
     await new Promise((resolve) => setTimeout(resolve, 1450));
     try {

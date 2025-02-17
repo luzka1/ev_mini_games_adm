@@ -6,4 +6,5 @@ export interface IGames {
   type: string;
   times_played: number;
   createdAt: Date;
+  id: string;
 }

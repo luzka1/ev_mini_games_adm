@@ -16,6 +16,8 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
     return <Skeleton className="h-[350px] w-[350px] bg-slate-200" />;
   }
 
+  console.log(props);
+
   return (
     <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))] w-full">
       {props.map((item, index) => (
@@ -23,8 +25,8 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
           key={index}
           href={
             pathname === "/users"
-              ? `/users/${item.game_id}`
-              : `/minigames/${item.game_id}`
+              ? `/users/${item.id}`
+              : `/minigames/${item.id}`
           }
         >
           <div

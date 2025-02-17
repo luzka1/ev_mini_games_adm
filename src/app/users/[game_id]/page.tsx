@@ -1,14 +1,12 @@
 "use client";
 
 import { PageLayout } from "@/app/pageLayout";
+import { DropDown } from "@/components/DropDown/DropDown";
 import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
 import { PlayersTable } from "@/components/PlayersTable/PlayersTable";
-import {
-  SelectMenu,
-  SelectValuesType,
-} from "@/components/SelectMenu/SelectMenu";
 import Container from "@/components/UI/Container";
 import { Input } from "@/components/UI/input";
+import { SecondButton } from "@/components/UI/SecondButton";
 import { usePlayersTableContext } from "@/contexts/PlayersTableContext";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -29,19 +27,6 @@ const UsersAdminArea = ({ params }: Props) => {
   const { players, loading, fetchPlayersData } = usePlayersTableContext();
   const [entries, setEntries] = useState<number>(10);
 
-  const playersTable = players.find(
-    (index) => index.game_id === params.game_id
-  );
-
-  useEffect(() => {
-    fetchPlayersData();
-  }, []);
-
-  const selectValues: SelectValuesType[] = [
-    { value: "a", label: "Mais recentes" },
-    { value: "b", label: "Mais antigos" },
-  ];
-
   function handleVerifyInput(value: number, max: number) {
     setEntries(value);
 
@@ -51,20 +36,27 @@ const UsersAdminArea = ({ params }: Props) => {
     }
   }
 
+  function handleExampleDownload() {
+    toast.success("Download efetuado com sucesso!");
+  }
+
+  useEffect(() => {
+    fetchPlayersData(params.game_id);
+  }, []);
+
   if (loading) {
     return <FullScreenLoading />;
   }
 
   return (
-    playersTable && (
+    players && (
       <div className="w-full h-full pt-8 flex flex-col gap-8">
         <div>
           <h1 className="text-3xl font-bold">
-            Controle de usuários de {playersTable.game_name}
+            Controle de usuários de {players.game_name}
           </h1>
           <span className="text-slate-500">
-            Veja todos os usuários que se cadastraram no jogo id: {""}
-            {playersTable.game_id}
+            Veja todos os usuários que se cadastraram no jogo
           </span>
         </div>
 
@@ -84,16 +76,16 @@ const UsersAdminArea = ({ params }: Props) => {
             </div>
 
             <div className="">
-              <SelectMenu
-                placeholder="Data de cadastro"
-                values={selectValues}
-                className="w-40"
+              <SecondButton
+                type="button"
+                action={handleExampleDownload}
+                text="Baixar"
               />
             </div>
           </div>
 
           <div className="px-4 py-6">
-            <PlayersTable players={playersTable.players} entries={entries} />
+            <PlayersTable players={players.players} entries={entries} />
           </div>
         </Container>
       </div>

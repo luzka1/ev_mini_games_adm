@@ -1,24 +1,16 @@
 import { api } from "@/lib/api";
 
-interface ApiResponse<T> {
-  data: T;
-  status: number;
-}
-
-interface PostProps<T> {
+interface PostProps {
   endpoint: string;
-  data: T;
+  data: any;
 }
 
-async function post<T>({
-  endpoint,
-  data,
-}: PostProps<T>): Promise<ApiResponse<T>> {
+async function post({ endpoint, data }: PostProps) {
   // Função POST (Envio de dados)
   try {
     const response = await api.post(endpoint, data);
 
-    const res: ApiResponse<T> = {
+    const res = {
       data: response.data,
       status: response.status,
     };

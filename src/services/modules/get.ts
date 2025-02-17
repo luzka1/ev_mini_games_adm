@@ -1,17 +1,12 @@
 import { api } from "@/lib/api";
 
-interface ApiResponse<T> {
-  data: T;
-  status: number;
-}
-
-async function get<T>(endpoint: string): Promise<ApiResponse<T>> {
+async function get(endpoint: string) {
   // Função GET (Recebimento de dados)
 
   try {
     const response = await api.get(endpoint);
 
-    const res: ApiResponse<T> = {
+    const res = {
       data: response.data,
       status: response.status,
     };

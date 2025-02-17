@@ -34,6 +34,8 @@ export const GamesProvider: React.FC<{ children: ReactNode }> = ({
     try {
       const res = await getData("/games");
 
+      console.log(res);
+
       if (res?.data && Array.isArray(res.data) && res?.status === 200) {
         setGames(res.data);
       }

@@ -3,20 +3,12 @@
 import useGet from "@/hooks/api/useGet";
 import { IPlayersList } from "@/interfaces/Lists/PlayersList";
 import { toast } from "react-toastify";
-import {
-  ReactNode,
-  useState,
-  useContext,
-  createContext,
-  SetStateAction,
-  Dispatch,
-} from "react";
+import { ReactNode, useState, useContext, createContext } from "react";
 
 interface IPlayersTableContext {
-  players: IPlayersList[];
-  setPlayers: Dispatch<SetStateAction<IPlayersList[]>>;
+  players: IPlayersList;
   loading: boolean;
-  fetchPlayersData: () => void;
+  fetchPlayersData: (id: string) => void;
 }
 
 const PlayersTableContext = createContext<IPlayersTableContext>(
@@ -27,16 +19,16 @@ export const PlayersTableProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const { getData } = useGet();
-  const [players, setPlayers] = useState<IPlayersList[]>([]);
+  const [players, setPlayers] = useState<IPlayersList>({} as IPlayersList);
   const [loading, setLoading] = useState<boolean>(false);
 
-  async function fetchPlayersData() {
+  async function fetchPlayersData(id: string) {
     setLoading(true);
 
     try {
-      const res = await getData("/users");
+      const res = await getData(`/users/${id}`);
 
-      if (res?.data && Array.isArray(res.data) && res?.status === 200) {
+      if (res?.data && res?.status === 200) {
         setPlayers(res.data);
       }
     } catch (error) {
@@ -53,7 +45,6 @@ export const PlayersTableProvider: React.FC<{ children: ReactNode }> = ({
         players,
         loading,
         fetchPlayersData,
-        setPlayers,
       }}
     >
       {children}

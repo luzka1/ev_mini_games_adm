@@ -56,8 +56,12 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
     { label: "Data de cadastro", sort_value: "createdAt" },
   ];
 
+  function fetchRemovePlayer() {}
+
+  console.log(filteredPlayers);
+
   return (
-    <table className="text-left w-full overflow-x-auto border-separate border-spacing-0">
+    <table className="w-full text-left overflow-x-auto border-separate border-spacing-0">
       <thead>
         <tr className="bg-slate-100 text-muted-foreground">
           {headTableValues.map((item, index) => (
@@ -74,7 +78,7 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
               <div className="flex gap-2 items-center">
                 {item.label}{" "}
                 <ArrowUpDown
-                  className="w-5 h-5"
+                  className="w-5 h-5 cursor-pointer"
                   onClick={() => sortTable(item.sort_value)}
                 />
               </div>
@@ -83,7 +87,7 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
         </tr>
       </thead>
       <tbody>
-        {filteredPlayers.slice(0, entries).map((item, index) => (
+        {filteredPlayers?.slice(0, entries).map((item, index) => (
           <tr key={index} className={index % 2 != 0 ? "bg-blue-100/40" : ""}>
             <td className={`${contentClass} rounded-s-xl`}>
               <div className="flex gap-4 items-center">

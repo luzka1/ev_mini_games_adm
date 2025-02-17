@@ -1,8 +1,8 @@
 "use client";
 
 import { PageLayout } from "@/app/pageLayout";
-import { DropDown } from "@/components/DropDown/DropDown";
 import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
+import { PlayersTable } from "@/components/PlayersTable/PlayersTable";
 import {
   SelectMenu,
   SelectValuesType,
@@ -10,7 +10,8 @@ import {
 import Container from "@/components/UI/Container";
 import { Input } from "@/components/UI/input";
 import { usePlayersTableContext } from "@/contexts/PlayersTableContext";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type Props = {
   params: { game_id: string };
@@ -26,6 +27,7 @@ export default function UsersAdmin({ params }: Props) {
 
 const UsersAdminArea = ({ params }: Props) => {
   const { players, loading, fetchPlayersData } = usePlayersTableContext();
+  const [entries, setEntries] = useState<number>(10);
 
   const playersTable = players.find(
     (index) => index.game_id === params.game_id
@@ -39,6 +41,15 @@ const UsersAdminArea = ({ params }: Props) => {
     { value: "a", label: "Mais recentes" },
     { value: "b", label: "Mais antigos" },
   ];
+
+  function handleVerifyInput(value: number, max: number) {
+    setEntries(value);
+
+    if (value > max) {
+      toast.error(`O valor máximo de entradas é ${max}`);
+      setEntries(10);
+    }
+  }
 
   if (loading) {
     return <FullScreenLoading />;
@@ -58,9 +69,17 @@ const UsersAdminArea = ({ params }: Props) => {
         </div>
 
         <Container className="w-full h-full">
-          <div className="border-b-2 p-4 flex items-center text-muted-foreground justify-between">
+          <div className="border-b-2 mx-4 py-4 flex items-center text-muted-foreground justify-between">
             <div className="flex items-center gap-4">
-              Mostar <Input className="w-20 px-2" type="number" />
+              Mostar{" "}
+              <Input
+                className="w-20 px-2"
+                type="number"
+                value={entries}
+                min={0}
+                max={10}
+                onChange={(e) => handleVerifyInput(e.target.valueAsNumber, 10)}
+              />
               entradas
             </div>
 
@@ -73,7 +92,9 @@ const UsersAdminArea = ({ params }: Props) => {
             </div>
           </div>
 
-          <div></div>
+          <div className="px-4 py-6">
+            <PlayersTable players={playersTable.players} entries={entries} />
+          </div>
         </Container>
       </div>
     )

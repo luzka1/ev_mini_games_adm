@@ -1,41 +1,8 @@
 {
   "users": [
     {
-      "game_id": "q56u837",
-      "game_name": "Quiz do mal",
-      "game_color": "string",
-      "game_desc": "string",
-      "players": [
-        {
-          "name": "João Silva",
-          "email": "joao.silva@email.com",
-          "birth_date": "1990-05-12",
-          "phone_number": "+55 11 91234-5678",
-          "createdAt": "2025-02-04T08:00:00Z",
-          "gender": "M"
-        },
-        {
-          "name": "Maria Oliveira",
-          "email": "maria.oliveira@email.com",
-          "birth_date": "1985-08-22",
-          "phone_number": "+55 21 99876-5432",
-          "createdAt": "2025-02-04T08:05:00Z",
-          "gender": "F"
-        },
-        {
-          "name": "Carlos Pereira",
-          "email": "carlos.pereira@email.com",
-          "birth_date": "1992-11-30",
-          "phone_number": "+55 31 98765-4321",
-          "createdAt": "2025-02-04T08:10:00Z",
-          "gender": "M"
-        }
-      ]
-    },
-    {
       "game_id": "q142362",
       "game_name": "Quiz do mal",
-      "game_color": "string",
       "game_desc": "string",
       "players": [
         {
@@ -44,7 +11,8 @@
           "birth_date": "1990-05-12",
           "phone_number": "+55 11 91234-5678",
           "createdAt": "2025-02-04T08:00:00Z",
-          "gender": "M"
+          "gender": "M",
+          "photo": "#4929b4"
         },
         {
           "name": "Maria Oliveira",
@@ -52,7 +20,8 @@
           "birth_date": "1985-08-22",
           "phone_number": "+55 21 99876-5432",
           "createdAt": "2025-02-04T08:05:00Z",
-          "gender": "F"
+          "gender": "F",
+          "photo": "#6a5acd"
         },
         {
           "name": "Carlos Pereira",
@@ -60,7 +29,71 @@
           "birth_date": "1992-11-30",
           "phone_number": "+55 31 98765-4321",
           "createdAt": "2025-02-04T08:10:00Z",
-          "gender": "M"
+          "gender": "M",
+          "photo": "#d9534f"
+        },
+        {
+          "name": "Carlos Pereira",
+          "email": "carlos.pereira@email.com",
+          "birth_date": "1992-11-30",
+          "phone_number": "+55 31 98765-4321",
+          "createdAt": "2025-02-04T08:10:00Z",
+          "gender": "M",
+          "photo": "#d9534f"
+        },
+        {
+          "name": "Ana Souza",
+          "email": "ana.souza@email.com",
+          "birth_date": "1998-02-15",
+          "phone_number": "+55 61 93456-7890",
+          "createdAt": "2025-02-05T09:00:00Z",
+          "gender": "F",
+          "photo": "#f4a261"
+        },
+        {
+          "name": "Lucas Costa",
+          "email": "lucas.costa@email.com",
+          "birth_date": "1994-06-03",
+          "phone_number": "+55 41 97654-3210",
+          "createdAt": "2025-02-05T09:05:00Z",
+          "gender": "M",
+          "photo": "#2a9d8f"
+        },
+        {
+          "name": "Fernanda Lima",
+          "email": "fernanda.lima@email.com",
+          "birth_date": "2000-12-18",
+          "phone_number": "+55 81 96321-4567",
+          "createdAt": "2025-02-05T09:10:00Z",
+          "gender": "F",
+          "photo": "#e76f51"
+        },
+        {
+          "name": "Marcos Silva",
+          "email": "marcos.silva@email.com",
+          "birth_date": "1991-04-10",
+          "phone_number": "+55 21 98765-4321",
+          "createdAt": "2025-02-05T09:15:00Z",
+          "gender": "M",
+          "photo": "#264653"
+        },
+        {
+          "name": "Beatriz Rodrigues",
+          "email": "beatriz.rodrigues@email.com",
+          "birth_date": "1989-07-29",
+          "phone_number": "+55 51 94567-1234",
+          "createdAt": "2025-02-05T09:20:00Z",
+          "gender": "F",
+          "photo": "#f1faee"
+        },
+        {
+          "name": "Ricardo Martins",
+          "email": "ricardo.martins@email.com",
+          "birth_date": "1995-11-06",
+          "phone_number": "+55 15 93210-1234",
+          "createdAt": "2025-02-05T09:25:00Z",
+          "gender": "M",
+          "photo": "#ffb3b3"
         }
       ]
     },
@@ -229,6 +262,24 @@
       "game_name": "Quiz",
       "type": "q",
       "game_id": "q142362",
+      "times_played": 1355,
+      "createdAt": "2025-02-04T08:00:00Z",
+      "game_color": "#4929b4",
+      "game_desc": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum quibusdam, ut error maxime vel, necessitatibus impedit."
+    },
+    {
+      "game_name": "Quiz",
+      "type": "q",
+      "game_id": "q1123",
+      "times_played": 1355,
+      "createdAt": "2025-02-04T08:00:00Z",
+      "game_color": "#4929b4",
+      "game_desc": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum quibusdam, ut error maxime vel, necessitatibus impedit."
+    },
+    {
+      "game_name": "Quiz",
+      "type": "q",
+      "game_id": "q632454",
       "times_played": 1355,
       "createdAt": "2025-02-04T08:00:00Z",
       "game_color": "#4929b4",

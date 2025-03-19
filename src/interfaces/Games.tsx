@@ -12,6 +12,12 @@ export interface IGames {
 export interface IGameConfig extends IGames {
   company_name: string;
   company_link: string;
-  questions: any[];
+  questions: questions[];
   allow_guest: boolean;
+}
+
+interface questions {
+  answer: string;
+  options: string[];
+  question: string;
 }

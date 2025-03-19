@@ -2,6 +2,8 @@
 
 import { PageLayout } from "@/app/pageLayout";
 import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
+import Container from "@/components/UI/Container";
+import { Input } from "@/components/UI/input";
 import { useGamesContext } from "@/contexts/GamesContext";
 import React, { useEffect } from "react";
 
@@ -31,13 +33,43 @@ function GamesAdminArea({ params }: Props) {
   return (
     <div className="w-full h-full pt-8 flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold">Gerenciamento do jogo: </h1>
+        <h1 className="text-3xl font-bold">
+          Gerenciamento do jogo: {gameConfig.game_name}
+        </h1>
         <span className="text-slate-500">
           Modifique o jogo e suas peculiaridades!
         </span>
       </div>
 
-      <div></div>
+      <Container className="p-4">
+        <h2 className="text-2xl font-bold">Textos e informações</h2>
+
+        <div>
+          <div>
+            <span>Nome do jogo</span>
+            <Input placeholder="Insira o nome do minigame" />
+          </div>
+
+          <div>
+            <span>
+              Mensagem negativa (Menos que 25% de acerto das questões)
+            </span>
+            <Input placeholder="Insira a mensagem negativa" />
+          </div>
+
+          <div>
+            <span>Mensagem neutra (Até 75% de acerto das questões)</span>
+            <Input placeholder="Insira a mensagem neutra" />
+          </div>
+
+          <div>
+            <span>
+              Mensagem positiva (Maior que 75% de acerto das questões)
+            </span>
+            <Input placeholder="Insira mensagem positiva" />
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

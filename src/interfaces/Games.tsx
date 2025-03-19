@@ -8,3 +8,10 @@ export interface IGames {
   createdAt: Date;
   id: string;
 }
+
+export interface IGameConfig extends IGames {
+  company_name: string;
+  company_link: string;
+  questions: any[];
+  allow_guest: boolean;
+}

@@ -14,6 +14,9 @@ export interface IGameConfig extends IGames {
   company_link: string;
   questions: questions[];
   allow_guest: boolean;
+  neutral_message: string;
+  positive_message: string;
+  negative_message: string;
 }
 
 interface questions {

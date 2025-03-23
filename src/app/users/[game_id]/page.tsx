@@ -1,7 +1,6 @@
 "use client";
 
 import { PageLayout } from "@/app/pageLayout";
-import { DropDown } from "@/components/DropDown/DropDown";
 import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
 import { PlayersTable } from "@/components/PlayersTable/PlayersTable";
 import Container from "@/components/UI/Container";

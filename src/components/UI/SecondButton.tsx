@@ -17,7 +17,7 @@ export const SecondButton = ({
     <button
       onClick={action}
       type={type}
-      className={`${className} flex gap-2 py-2 px-4 rounded-xl border-2 border-blue-500 font-bold text-blue-500 hover:border-transparent hover:bg-blue-500 hover:text-white transition-all`}
+      className={`${className} flex items-center justify-center py-2 px-4 rounded-xl border-2 border-blue-500 font-bold text-blue-500 hover:border-transparent hover:bg-blue-500 hover:text-white transition-all`}
     >
       {text}
     </button>

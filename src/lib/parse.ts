@@ -1,9 +1,9 @@
 import Parse from "parse/node";
 
 Parse.initialize(
-  process.env.NEXT_PUBLIC_PARSE_APP_ID as string,
-  process.env.NEXT_PUBLIC_PARSE_JAVASCRIPT_KEY as string
+  "nQpo9HdkNte5SwE9FFRpuw0TiI3M09CjkU8ws1on",
+  "wiyqsvL2rgSXBk6ASWMy2zi2EZc24gX6XrT77twP"
 );
-Parse.serverURL = process.env.NEXT_PUBLIC_PARSE_SERVER_URL as string;
+Parse.serverURL = "https://parseapi.back4app.com/";
 
 export default Parse;

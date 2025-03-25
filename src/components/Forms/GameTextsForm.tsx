@@ -26,7 +26,7 @@ const GameTextsForm = ({
           label="Descrição do jogo"
           value={formData.game_desc}
           onChange={(value) => handleChangeFormData("game_desc", value)}
-          placeholder="Insira a descrição do jogo (opicional)"
+          placeholder="Insira a descrição do jogo (opcional)"
         />
         <TextInput
           label="Nome da empresa"

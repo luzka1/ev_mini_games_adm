@@ -1,47 +1,56 @@
 "use client";
 
+import React, { useState } from "react";
 import { PageLayout } from "@/app/pageLayout";
-import ErrorMessageModal from "@/components/ErrorMessageModal/ErrorMessageModal";
+import { IGameConfig } from "@/interfaces/Games";
+import { SecondButton } from "@/components/UI/SecondButton";
+import Container from "@/components/UI/Container";
 import GameTextsForm from "@/components/Forms/GameTextsForm";
 import { PrincipalColorForm } from "@/components/Forms/PrincipalColorForm";
 import QuestionsForm from "@/components/Forms/QuestionsForm";
-import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
-import SaveModal from "@/components/SaveModal/SaveModal";
-import Container from "@/components/UI/Container";
-import { SecondButton } from "@/components/UI/SecondButton";
-import { useGamesContext } from "@/contexts/GamesContext";
-import { CopyToClipboard } from "@/functions/CopyToClipboard";
-import { IGameConfig } from "@/interfaces/Games";
-import { Copy } from "lucide-react";
-import React, { useEffect, useState } from "react";
-interface Props {
-  params: { game_id: string };
-}
+import ErrorMessageModal from "@/components/ErrorMessageModal/ErrorMessageModal";
+import RequestGameModal from "@/components/RequestGameModal/RequestGameModal";
 
-export default function GamesAdmin({ params }: Props) {
+export default function Minigames() {
   return (
-    <PageLayout>
-      <GamesAdminArea params={params} />
-    </PageLayout>
+    <>
+      <PageLayout>
+        <NewMiniGameArea />
+      </PageLayout>
+    </>
   );
 }
 
-function GamesAdminArea({ params }: Props) {
-  const { fetchConfigGame, gameConfig } = useGamesContext();
-  const [formData, setFormData] = useState<IGameConfig>({} as IGameConfig);
+function NewMiniGameArea() {
+  const [formData, setFormData] = useState<IGameConfig>({
+    allow_guest: false,
+    company_link: "",
+    company_name: "",
+    createdAt: new Date(),
+    game_color: "#fff",
+    game_desc: "",
+    game_id: "",
+    game_name: "",
+    id: "",
+    negative_message:
+      "Ainda tem muito para aprender. Tente novamente e melhore!",
+    neutral_message:
+      "Boa! Você quase chegou na excelência. Revise os detalhes e tente mais uma vez!",
+    positive_message:
+      "Excelente! Você mandou muito bem. Continue assim e vai arrasar!",
+    times_played: 0,
+    type: "q",
+    questions: [
+      {
+        answer: "",
+        options: ["", "", "", ""],
+        question: "",
+      },
+    ],
+  });
+  const [isErrorModalOpen, setErrorModalOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
-  const [isErrorModalOpen, setErrorModalOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    fetchConfigGame(params.game_id);
-  }, [params.game_id]);
-
-  useEffect(() => {
-    if (gameConfig) {
-      setFormData(gameConfig);
-    }
-  }, [gameConfig]);
 
   const handleChangeFormData = (field: string, value: unknown) => {
     setFormData((prevData) => ({
@@ -82,17 +91,13 @@ function GamesAdminArea({ params }: Props) {
     }
   };
 
-  const handleControlSaveModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
   const handleControlErrorModal = () => {
     setErrorModalOpen(!isErrorModalOpen);
   };
 
-  if (!gameConfig || Object.keys(gameConfig).length === 0) {
-    return <FullScreenLoading />;
-  }
+  const handleControlRequestModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <>
@@ -103,39 +108,25 @@ function GamesAdminArea({ params }: Props) {
         formData={formData}
       />
 
-      <SaveModal
+      <RequestGameModal
         formData={formData}
         isOpen={isModalOpen}
-        onOpenChange={handleControlSaveModal}
+        onOpenChange={handleControlRequestModal}
       />
 
       <div className="w-full h-full pt-8 gap-8 grid grid-cols-2">
         <div className="col-span-2 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">
-              Gerenciamento do jogo: {gameConfig.game_name}
-            </h1>
+            <h1 className="text-3xl font-bold">Solicitação de novo jogo</h1>
             <span className="text-slate-500">
-              Modifique o jogo e suas peculiaridades!
+              Crie um jogo com suas especificações!
             </span>
           </div>
           <div className="flex gap-4">
-            <div className="rounded-xl border border-slate-400 p-2 bg-white flex gap-2 items-center">
-              http://localhost:5173/?game_id={gameConfig.game_id}{" "}
-              <Copy
-                className="hover:scale-110 transition-all"
-                onClick={() =>
-                  CopyToClipboard(
-                    `http://localhost:5173/?game_id=${formData.game_id}`
-                  )
-                }
-              />
-            </div>
-
             <SecondButton
               type="button"
               action={handleSendRequest}
-              text="Salvar"
+              text="Solicitar"
             />
           </div>
         </div>

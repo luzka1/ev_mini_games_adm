@@ -48,17 +48,13 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
   const headTableValues: headValuesType[] = [
     {
       label: "Nome",
-      sort_value: "name",
+      sort_value: "full_name",
     },
     { label: "E-mail", sort_value: "email" },
     { label: "Data de nascimento", sort_value: "birth_date" },
     { label: "Celular", sort_value: "phone_number" },
     { label: "Data de cadastro", sort_value: "createdAt" },
   ];
-
-  function fetchRemovePlayer() {}
-
-  console.log(filteredPlayers);
 
   return (
     <table className="w-full text-left overflow-x-auto border-separate border-spacing-0">
@@ -95,7 +91,7 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
                   style={{ backgroundColor: item.photo }}
                   className="rounded-full p-2 w-12 h-12"
                 />
-                {item.name}
+                {item.full_name}
               </div>
             </td>
             <td className={contentClass}>{item.email}</td>

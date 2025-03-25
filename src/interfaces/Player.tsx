@@ -1,6 +1,6 @@
 export interface IPlayer {
   id: string;
-  name: string;
+  full_name: string;
   birth_date: Date;
   phone_number: string;
   email: string;

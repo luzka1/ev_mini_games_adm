@@ -33,12 +33,14 @@ const MinigamesArea = () => {
           </span>
         </div>
         <div>
-          <button
-            type="button"
-            className="flex gap-2 p-4 rounded-full border-2 border-blue-500 font-bold text-blue-500 hover:border-transparent hover:bg-blue-500 hover:text-white transition-all"
-          >
-            Solicitar minigame <PlusIcon />
-          </button>
+          <a href="/minigames/new-minigame">
+            <button
+              type="button"
+              className="flex gap-2 p-4 rounded-full border-2 border-blue-500 font-bold text-blue-500 hover:border-transparent hover:bg-blue-500 hover:text-white transition-all"
+            >
+              Solicitar minigame <PlusIcon />
+            </button>
+          </a>
         </div>
       </div>
 

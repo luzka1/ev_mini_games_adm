@@ -23,7 +23,7 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
           key={index}
           href={
             pathname === "/users"
-              ? `/users/${item.id}`
+              ? `/users/${item.game_id}`
               : `/minigames/${item.game_id}`
           }
         >

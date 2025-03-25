@@ -5,6 +5,7 @@ import { Input } from "../UI/input";
 import { toast } from "react-toastify";
 import { IGameConfig } from "@/interfaces/Games";
 import { SelectInput } from "../UI/SelectInput";
+import { TextInput } from "../UI/TextInput";
 
 interface QuestionsFormProps {
   formData: IGameConfig;
@@ -26,7 +27,7 @@ const QuestionsForm = ({
   function handleVerifyInput(value: number, max: number) {
     if (value > max) {
       toast.error(`O valor máximo de perguntas é ${max}`);
-      value = max;
+      value = 1;
     }
 
     setEntries(value);
@@ -73,7 +74,7 @@ const QuestionsForm = ({
       <div className="w-full flex justify-between">
         <h2 className="text-2xl font-bold">Perguntas e respostas</h2>
         <div className="flex flex-col items-end">
-          <span>Quantidade de questões</span>
+          <span className="font-bold">Quantidade de questões</span>
           <Input
             className="px-2 w-20"
             type="number"
@@ -97,40 +98,38 @@ const QuestionsForm = ({
             <div key={index} className="flex flex-col gap-4 animate-fadeIn">
               <h2 className="font-bold text-xl">Pergunta {index + 1} </h2>
 
-              <div>
-                <span>Pergunta</span>
-                <Input
-                  value={question.question}
-                  placeholder="Insira a pergunta"
-                  onChange={(e) =>
-                    handleQuestionChange(index, "question", e.target.value)
-                  }
-                />
-              </div>
+              <TextInput
+                label="Pergunta"
+                value={question.question}
+                onChange={(value) =>
+                  handleQuestionChange(index, "question", value)
+                }
+                placeholder="Insira a pergunta"
+              />
 
               <div className="grid grid-cols-2 gap-4">
                 {question.options.map((option, optionIndex) => (
                   <div key={optionIndex}>
-                    <span>Alternativa {optionIndex + 1}</span>
-                    <Input
+                    <TextInput
+                      label={`Alternativa ${optionIndex + 1}`}
                       value={option}
-                      placeholder={`Insira a alternativa ${optionIndex + 1}`}
-                      onChange={(e) =>
+                      onChange={(value) =>
                         handleQuestionChange(
                           index,
                           "options",
                           question.options.map((opt, i) =>
-                            i === optionIndex ? e.target.value : opt
+                            i === optionIndex ? value : opt
                           )
                         )
                       }
+                      placeholder={`Insira a alternativa ${optionIndex + 1}`}
                     />
                   </div>
                 ))}
               </div>
 
               <div className="flex flex-col w-full">
-                <span>Resposta</span>
+                <span className="font-bold">Resposta</span>
                 <SelectInput
                   index={index}
                   value={question.answer || "Selecione uma resposta"}

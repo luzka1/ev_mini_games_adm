@@ -1,16 +1,18 @@
 "use client";
 
 import { PageLayout } from "@/app/pageLayout";
+import GameTextsForm from "@/components/Forms/GameTextsForm";
+import { PrincipalColorForm } from "@/components/Forms/PrincipalColorForm";
 import QuestionsForm from "@/components/Forms/QuestionsForm";
 import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
+import SaveModal from "@/components/SaveModal/SaveModal";
 import Container from "@/components/UI/Container";
 import { SecondButton } from "@/components/UI/SecondButton";
-import { TextInput } from "@/components/UI/TextInput";
 import { useGamesContext } from "@/contexts/GamesContext";
+import { CopyToClipboard } from "@/functions/CopyToClipboard";
 import { IGameConfig } from "@/interfaces/Games";
+import { Copy } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { SketchPicker } from "react-color";
-
 interface Props {
   params: { game_id: string };
 }
@@ -26,6 +28,7 @@ export default function GamesAdmin({ params }: Props) {
 function GamesAdminArea({ params }: Props) {
   const { fetchConfigGame, gameConfig } = useGamesContext();
   const [formData, setFormData] = useState<IGameConfig>({} as IGameConfig);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchConfigGame(params.game_id);
@@ -44,91 +47,74 @@ function GamesAdminArea({ params }: Props) {
     }));
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   if (!gameConfig || Object.keys(gameConfig).length === 0) {
     return <FullScreenLoading />;
   }
 
   return (
-    <div className="w-full h-full pt-8 gap-8 grid grid-cols-2">
-      <div className="col-span-2 flex justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">
-            Gerenciamento do jogo: {gameConfig.game_name}
-          </h1>
-          <span className="text-slate-500">
-            Modifique o jogo e suas peculiaridades!
-          </span>
+    <>
+      <SaveModal
+        formData={formData}
+        isOpen={isModalOpen}
+        onOpenChange={handleOpenModal}
+      />
+
+      <div className="w-full h-full pt-8 gap-8 grid grid-cols-2">
+        <div className="col-span-2 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">
+              Gerenciamento do jogo: {gameConfig.game_name}
+            </h1>
+            <span className="text-slate-500">
+              Modifique o jogo e suas peculiaridades!
+            </span>
+          </div>
+          <div className="flex gap-4">
+            <div className="rounded-xl border border-slate-400 p-2 bg-white flex gap-2 items-center">
+              http://localhost:5173/?game_id={gameConfig.game_id}{" "}
+              <Copy
+                className="hover:scale-110 transition-all"
+                onClick={() =>
+                  CopyToClipboard(
+                    `http://localhost:5173/?game_id=${formData.game_id}`
+                  )
+                }
+              />
+            </div>
+
+            <SecondButton
+              type="button"
+              action={handleOpenModal}
+              text="Salvar"
+            />
+          </div>
         </div>
 
-        <div>
-          <SecondButton
-            type="button"
-            action={() => {
-              throw new Error("Function not implemented.");
-            }}
-            text="Salvar"
+        <Container className="p-4 flex flex-col gap-4 h-[408px]">
+          <GameTextsForm
+            formData={formData}
+            handleChangeFormData={handleChangeFormData}
           />
-        </div>
+        </Container>
+
+        <Container className="flex flex-col h-[408px] gap-4">
+          <PrincipalColorForm
+            formData={formData}
+            handleChangeFormData={handleChangeFormData}
+          />
+        </Container>
+
+        <Container className="p-4 col-span-2 flex flex-col gap-4">
+          <QuestionsForm
+            formData={formData}
+            handleChangeFormData={handleChangeFormData}
+          />
+        </Container>
       </div>
-
-      <Container className="p-4 flex flex-col gap-4 h-[408px]">
-        <h2 className="text-2xl font-bold">Textos e informações</h2>
-
-        <div className="flex flex-col justify-between h-full">
-          <TextInput
-            label="Nome do jogo"
-            value={formData.game_name}
-            onChange={(value) => handleChangeFormData("game_name", value)}
-            placeholder="Insira o nome do jogo"
-          />
-          <TextInput
-            label="Mensagem negativa (Menos que 25% de acerto das questões)"
-            value={formData.negative_message}
-            onChange={(value) =>
-              handleChangeFormData("negative_message", value)
-            }
-            placeholder="Insira a mensagem negativa"
-          />
-          <TextInput
-            label="Mensagem neutra (Até 75% de acerto das questões)"
-            value={formData.neutral_message}
-            onChange={(value) => handleChangeFormData("neutral_message", value)}
-            placeholder="Insira a mensagem neutra"
-          />
-          <TextInput
-            label="Mensagem positiva (Maior que 75% de acerto das questões)"
-            value={formData.positive_message}
-            onChange={(value) =>
-              handleChangeFormData("positive_message", value)
-            }
-            placeholder="Insira mensagem positiva"
-          />
-        </div>
-      </Container>
-
-      <Container className="flex flex-col h-[408px] gap-4">
-        <h2 className="pl-4 pt-4 text-2xl font-bold">Cor principal</h2>
-
-        <div
-          style={{ backgroundColor: formData.game_color }}
-          className="flex w-full h-full gap-4 relative rounded-b-xl"
-        >
-          <SketchPicker
-            className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
-            color={formData.game_color}
-            onChange={(newColor) =>
-              handleChangeFormData("game_color", newColor.hex)
-            }
-          />
-        </div>
-      </Container>
-
-      <Container className="p-4 col-span-2 flex flex-col gap-4">
-        <QuestionsForm
-          formData={formData}
-          handleChangeFormData={handleChangeFormData}
-        />
-      </Container>
-    </div>
+    </>
   );
 }

@@ -23,7 +23,7 @@ export default function UsersAdmin({ params }: Props) {
 }
 
 const UsersAdminArea = ({ params }: Props) => {
-  const { players, loading, fetchPlayersData } = usePlayersTableContext();
+  const { players, fetchPlayersData } = usePlayersTableContext();
   const [entries, setEntries] = useState<number>(10);
 
   function handleVerifyInput(value: number, max: number) {
@@ -43,7 +43,7 @@ const UsersAdminArea = ({ params }: Props) => {
     fetchPlayersData(params.game_id);
   }, []);
 
-  if (loading) {
+  if (!players || Object.keys(players).length === 0) {
     return <FullScreenLoading />;
   }
 

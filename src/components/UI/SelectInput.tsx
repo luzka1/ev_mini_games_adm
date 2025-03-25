@@ -34,7 +34,7 @@ export function SelectInput({
         onChange(index, "answer", selectedValue)
       }
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-full">
         <SelectValue placeholder="Selecione uma opção" />
       </SelectTrigger>
       <SelectContent>

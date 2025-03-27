@@ -27,7 +27,7 @@ function NewMiniGameArea() {
     company_link: "",
     company_name: "",
     createdAt: new Date(),
-    game_color: "#fff",
+    game_color: "#71F8C6",
     game_desc: "",
     game_id: "",
     game_name: "",

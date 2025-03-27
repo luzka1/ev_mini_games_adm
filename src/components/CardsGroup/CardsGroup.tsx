@@ -13,7 +13,9 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
   const pathname = usePathname();
 
   if (props.length <= 0) {
-    return <Skeleton className="h-[350px] w-[350px] bg-slate-200" />;
+    return (
+      <Skeleton className="h-[350px] w-[350px] bg-slate-200 dark:dark:bg-zinc-950" />
+    );
   }
 
   return (
@@ -31,7 +33,7 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
             style={{ backgroundColor: item.game_color }}
             className="rounded-xl h-[350px] w-full flex items-end shadow-xl hover:scale-105 transition-all"
           >
-            <div className="bg-white h-1/3 max-h-1/3 w-full rounded-b-xl py-2 px-4 flex overflow-auto">
+            <div className="bg-white dark:bg-zinc-950 h-1/3 max-h-1/3 w-full rounded-b-xl py-2 px-4 flex overflow-auto">
               <div>
                 <span className="text-xl font-bold">{item.game_name}</span>
                 <p className="text-sm text-muted-foreground">

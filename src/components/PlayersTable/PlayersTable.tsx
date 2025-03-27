@@ -59,7 +59,7 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
   return (
     <table className="w-full text-left overflow-x-auto border-separate border-spacing-0">
       <thead>
-        <tr className="bg-slate-100 text-muted-foreground">
+        <tr className="bg-slate-100 dark:bg-zinc-900 text-muted-foreground">
           {headTableValues.map((item, index) => (
             <th
               key={index}
@@ -84,7 +84,10 @@ export const PlayersTable = ({ players, entries }: PlayersTableProps) => {
       </thead>
       <tbody>
         {filteredPlayers?.slice(0, entries).map((item, index) => (
-          <tr key={index} className={index % 2 != 0 ? "bg-blue-100/40" : ""}>
+          <tr
+            key={index}
+            className={index % 2 != 0 ? "bg-blue-100/40 dark:bg-zinc-900" : ""}
+          >
             <td className={`${contentClass} rounded-s-xl`}>
               <div className="flex gap-4 items-center">
                 <User

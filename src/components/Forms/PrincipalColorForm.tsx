@@ -20,7 +20,7 @@ export const PrincipalColorForm = ({
         className="flex w-full h-full gap-4 relative rounded-b-xl"
       >
         <SketchPicker
-          className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+          className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 dark:text-black"
           color={formData.game_color}
           onChange={(newColor) =>
             handleChangeFormData("game_color", newColor.hex)

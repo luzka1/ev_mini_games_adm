@@ -5,16 +5,36 @@ import { Button } from "../UI/button";
 import IconInput from "../UI/IconInput";
 import { KeyRound, MailIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const LoginForm = () => {
-  const [login, setLogin] = useState("");
-  const [pass, setPass] = useState("");
+  const [login, setLogin] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useRouter();
 
-  function fetchAuthLogin(e: React.FormEvent<HTMLFormElement>) {
+  const user = "guest@email.com";
+  const password = "guest123";
+
+  const fetchAuthLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate.push("/");
-  }
+    setLoading(true);
+
+    try {
+      if (user === login && pass === password) {
+        Cookies.set("token", "logged");
+        navigate.push("/");
+      } else {
+        toast.error("Usuário ou senha incorretos!");
+        Cookies.remove("token");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <form
@@ -37,7 +57,7 @@ const LoginForm = () => {
         icon={<KeyRound className="text-blue-500" />}
         required
       />
-      <Button className="w-full" type="submit">
+      <Button disabled={loading} className="w-full" type="submit">
         Acessar
       </Button>
     </form>

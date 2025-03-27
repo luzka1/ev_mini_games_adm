@@ -33,7 +33,7 @@ export function Areachart({ areaColor }: { areaColor: string }) {
   } satisfies ChartConfig;
 
   return (
-    <Card className="bg-white shadow-lg border-none h-full">
+    <Card className="bg-white dark:bg-zinc-950 shadow-lg border-none h-full">
       <CardHeader>
         <CardTitle>Usuários cadastrados</CardTitle>
         <CardDescription>

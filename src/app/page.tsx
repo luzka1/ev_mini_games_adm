@@ -34,7 +34,7 @@ const HomeArea = () => {
         </div>
 
         <div className="flex gap-4 h-auto justify-between w-full">
-          <div className="h-full bg-slate-100 dark:bg-zinc-950 rounded-xl p-4 flex flex-col justify-between w-1/2">
+          <div className="h-full bg-slate-100 dark:bg-zinc-900 rounded-xl p-4 flex flex-col justify-between w-1/2">
             <div className="flex flex-col gap-2 font-medium">
               <ChartLine className="w-12 h-12" />
               Total de usuários alcançados
@@ -43,7 +43,7 @@ const HomeArea = () => {
               <Counter max={users_reached} />
             </div>
           </div>
-          <div className="h-full bg-slate-100 dark:bg-zinc-950 rounded-xl p-4 flex flex-col justify-between w-1/2">
+          <div className="h-full bg-slate-100 dark:bg-zinc-900 rounded-xl p-4 flex flex-col justify-between w-1/2">
             <div className="flex flex-col gap-2 font-medium">
               <Joystick className="w-12 h-12" />
               Vezes jogadas

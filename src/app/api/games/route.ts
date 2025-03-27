@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import Parse from "@/lib/parse";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const result = await Parse.Cloud.run("getGames");
 

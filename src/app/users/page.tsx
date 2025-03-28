@@ -14,9 +14,10 @@ export default function Users() {
 }
 
 const UsersArea = () => {
-  const { games, fetchGamesData } = useGamesContext();
+  const { games, fetchGamesData, resetGames } = useGamesContext();
 
   useEffect(() => {
+    resetGames();
     fetchGamesData();
   }, []);
 

@@ -19,6 +19,7 @@ interface IGamesContext {
   loading: boolean;
   fetchGamesData: () => void;
   fetchConfigGame: (game_id: string) => void;
+  resetGames: () => void;
 }
 
 const GamesContext = createContext<IGamesContext>({} as IGamesContext);
@@ -35,7 +36,13 @@ export const GamesProvider: React.FC<{ children: ReactNode }> = ({
     await new Promise((resolve) => setTimeout(resolve, 1450));
 
     try {
-      const res = await axios.get("/api/games");
+      const res = await axios.get(`/api/games?timestamp=${Date.now()}`, {
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      });
 
       if (res?.data && Array.isArray(res.data) && res?.status === 200) {
         setGames(res.data);
@@ -65,6 +72,10 @@ export const GamesProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  const resetGames = () => {
+    setGames([]);
+  };
+
   return (
     <GamesContext.Provider
       value={{
@@ -74,6 +85,7 @@ export const GamesProvider: React.FC<{ children: ReactNode }> = ({
         fetchGamesData,
         fetchConfigGame,
         setGames,
+        resetGames,
       }}
     >
       {children}

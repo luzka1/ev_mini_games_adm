@@ -17,11 +17,12 @@ export default function Minigames() {
 }
 
 const MinigamesArea = () => {
-  const { games, fetchGamesData } = useGamesContext();
+  const { games, fetchGamesData, resetGames } = useGamesContext();
 
   useEffect(() => {
+    resetGames();
     fetchGamesData();
-  }, [games]);
+  }, []);
 
   return (
     <div className="w-full h-full pt-8 flex flex-col gap-8">

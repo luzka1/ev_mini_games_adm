@@ -1,23 +1,28 @@
 import { NextResponse } from "next/server";
 import Parse from "@/lib/parse";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const result = await Parse.Cloud.run("getGames");
 
+    if (!Array.isArray(result)) {
+      console.error("O resultado não é um array:", result);
+      return NextResponse.json([], {
+        headers: { "Cache-Control": "no-store" },
+        status: 200,
+      });
+    }
+
     return NextResponse.json(result, {
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-store, max-age=0",
-        "CDN-Cache-Control": "no-store",
-        "Vercel-CDN-Cache-Control": "no-store",
-      },
+      headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
-    console.error("Erro ao chamar a função do Parse:", error);
-    return NextResponse.json(
-      { error: "Erro ao buscar dados do jogo" },
-      { status: 500 }
-    );
+    console.error("Erro na API:", error);
+    return NextResponse.json([], {
+      headers: { "Cache-Control": "no-store" },
+      status: 500,
+    });
   }
 }

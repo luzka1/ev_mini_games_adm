@@ -14,11 +14,14 @@ export default function Users() {
 }
 
 const UsersArea = () => {
-  const { games, fetchGamesData, resetGames } = useGamesContext();
+  const { games, fetchGamesData } = useGamesContext();
 
   useEffect(() => {
-    resetGames();
-    fetchGamesData();
+    const loadData = async () => {
+      await fetchGamesData();
+    };
+
+    loadData();
   }, []);
 
   return (
@@ -32,7 +35,6 @@ const UsersArea = () => {
           jogador!
         </span>
       </div>
-
       <CardsGroup props={games} />
     </div>
   );

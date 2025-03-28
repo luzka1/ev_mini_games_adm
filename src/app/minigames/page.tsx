@@ -17,11 +17,14 @@ export default function Minigames() {
 }
 
 const MinigamesArea = () => {
-  const { games, fetchGamesData, resetGames } = useGamesContext();
+  const { games, fetchGamesData } = useGamesContext();
 
   useEffect(() => {
-    resetGames();
-    fetchGamesData();
+    const loadData = async () => {
+      await fetchGamesData();
+    };
+
+    loadData();
   }, []);
 
   return (

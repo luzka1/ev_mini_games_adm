@@ -1,10 +1,25 @@
 {
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ],
   "routes": [
     {
       "src": "/api/.*",
+      "dest": "/api",
       "headers": {
-        "Cache-Control": "no-store",
-        "CDN-Cache-Control": "no-store"
+        "Cache-Control": "no-store"
       }
     }
   ]

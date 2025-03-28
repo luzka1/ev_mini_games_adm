@@ -21,7 +21,7 @@ const MinigamesArea = () => {
 
   useEffect(() => {
     fetchGamesData();
-  }, []);
+  }, [games]);
 
   return (
     <div className="w-full h-full pt-8 flex flex-col gap-8">

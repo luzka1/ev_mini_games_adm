@@ -121,12 +121,12 @@ function GamesAdminArea({ params }: Props) {
           </div>
           <div className="flex gap-4">
             <div className="rounded-xl border border-slate-400 p-2 bg-white dark:bg-zinc-950 flex gap-2 items-center">
-              http://localhost:5173/?game_id={gameConfig.game_id}{" "}
+              https://quiz-ev.vercel.app/?game_id={gameConfig.game_id}{" "}
               <Copy
                 className="hover:scale-110 transition-all"
                 onClick={() =>
                   CopyToClipboard(
-                    `http://localhost:5173/?game_id=${formData.game_id}`
+                    `https://quiz-ev.vercel.app/?game_id=${formData.game_id}`
                   )
                 }
               />

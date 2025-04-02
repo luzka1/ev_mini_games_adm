@@ -80,7 +80,7 @@ const SaveModalArea = ({
             type="button"
             onClick={() =>
               CopyToClipboard(
-                `http://localhost:5173/?game_id=${formData.game_id}`
+                `https://quiz-ev.vercel.app/?game_id=${formData.game_id}`
               )
             }
           >

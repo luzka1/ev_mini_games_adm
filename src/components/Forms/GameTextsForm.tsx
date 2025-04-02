@@ -17,7 +17,7 @@ const GameTextsForm = ({
 
       <div className="flex flex-col justify-between h-full gap-4 overflow-auto px-2">
         <TextInput
-          label="Nome do jogo"
+          label="Nome do jogo *"
           value={formData.game_name}
           onChange={(value) => handleChangeFormData("game_name", value)}
           placeholder="Insira o nome do jogo"
@@ -29,25 +29,25 @@ const GameTextsForm = ({
           placeholder="Insira a descrição do jogo (opcional)"
         />
         <TextInput
-          label="Nome da empresa"
+          label="Nome da empresa *"
           value={formData.company_name}
           onChange={(value) => handleChangeFormData("company_name", value)}
           placeholder="Insira o nome da empresa (ficará na tela inicial do jogo)"
         />
         <TextInput
-          label="Mensagem negativa (Menos que 25% de acerto das questões)"
+          label="Mensagem negativa (Menos que 25% de acerto das questões) *"
           value={formData.negative_message}
           onChange={(value) => handleChangeFormData("negative_message", value)}
           placeholder="Insira a mensagem negativa"
         />
         <TextInput
-          label="Mensagem neutra (Até 75% de acerto das questões)"
+          label="Mensagem neutra (Até 75% de acerto das questões) *"
           value={formData.neutral_message}
           onChange={(value) => handleChangeFormData("neutral_message", value)}
           placeholder="Insira a mensagem neutra"
         />
         <TextInput
-          label="Mensagem positiva (Maior que 75% de acerto das questões)"
+          label="Mensagem positiva (Maior que 75% de acerto das questões) *"
           value={formData.positive_message}
           onChange={(value) => handleChangeFormData("positive_message", value)}
           placeholder="Insira mensagem positiva"

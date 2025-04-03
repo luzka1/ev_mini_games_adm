@@ -24,14 +24,14 @@ export default function UsersAdmin({ params }: Props) {
 
 const UsersAdminArea = ({ params }: Props) => {
   const { players, fetchPlayersData } = usePlayersTableContext();
-  const [entries, setEntries] = useState<number>(10);
+  const [entries, setEntries] = useState<number>(100);
 
   function handleVerifyInput(value: number, max: number) {
     setEntries(value);
 
     if (value > max) {
       toast.error(`O valor máximo de entradas é ${max}`);
-      setEntries(10);
+      setEntries(100);
     }
   }
 
@@ -68,8 +68,8 @@ const UsersAdminArea = ({ params }: Props) => {
                 type="number"
                 value={entries}
                 min={0}
-                max={10}
-                onChange={(e) => handleVerifyInput(e.target.valueAsNumber, 10)}
+                max={100}
+                onChange={(e) => handleVerifyInput(e.target.valueAsNumber, 100)}
               />
               entradas
             </div>

@@ -35,8 +35,10 @@ export function Areachart({ areaColor }: { areaColor: string }) {
   return (
     <Card className="bg-white dark:bg-zinc-950 shadow-lg border-none h-full">
       <CardHeader>
-        <CardTitle>Usuários cadastrados</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-lg md:text-2xl">
+          Usuários cadastrados
+        </CardTitle>
+        <CardDescription className="text-sm md:text-base">
           Mostrando os usuários cadastrados nos últimos 6 meses
         </CardDescription>
       </CardHeader>

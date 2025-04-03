@@ -6,8 +6,8 @@ import { Info } from "lucide-react";
 export default function Auth() {
   return (
     <>
-      <div className="fixed top-5 left-5 w-[250px] bg-white border-2 border-blue-500 rounded-xl shadow-lg animate-fadeIn">
-        <div className="flex flex-col p-4 items-center justify-center">
+      <div className="fixed md:top-5 md:left-5 top-1 left-1 w-[225px] md:w-[250px] bg-white border-2 border-blue-500 rounded-xl shadow-lg animate-fadeIn z-10">
+        <div className="flex flex-col p-2 md:p-4 items-center justify-center">
           <Info className="text-blue-500" />
           <p className="font-bold text-blue-500">Para testes, utilize:</p>
           <div className="flex flex-col text-start">
@@ -24,7 +24,7 @@ export default function Auth() {
       <div className="h-screen flex flex-col justify-center items-center">
         <Logo className="" />
 
-        <Container className="w-[500px] p-8 m-12 animate-fadeIn">
+        <Container className="w-[500px] max-w-[90vw] p-8 my-12 animate-fadeIn">
           <div className="flex flex-col items-center text-center w-full gap-8">
             <div>
               <h1 className="text-xl font-bold">Seja bem-vindo(a)</h1>

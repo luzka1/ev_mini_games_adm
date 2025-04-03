@@ -71,9 +71,9 @@ const QuestionsForm = ({
 
   return (
     <>
-      <div className="w-full flex justify-between">
-        <h2 className="text-2xl font-bold">Perguntas e respostas</h2>
-        <div className="flex flex-col items-end">
+      <div className="w-full flex flex-col md:flex-row gap-4 justify-between">
+        <h2 className="text-lg md:text-2xl font-bold">Perguntas e respostas</h2>
+        <div className="flex flex-col items-start md:items-end">
           <span className="font-bold">Quantidade de questões</span>
           <Input
             className="px-2 w-20"
@@ -86,7 +86,7 @@ const QuestionsForm = ({
         </div>
       </div>
 
-      <div className="grid px-4 grid-cols-2 grid-flow-row gap-4 max-h-[500px] overflow-y-auto">
+      <div className="md:grid px-4 md:grid-cols-2 md:grid-flow-row max-h-[500px] pb-10 md:pb-0 flex flex-col gap-4 overflow-y-auto">
         {entries === 0 ? (
           <div className="h-full w-full flex items-center justify-center col-span-2">
             <p className="font-bold text-xl">

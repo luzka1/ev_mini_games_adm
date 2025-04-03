@@ -13,7 +13,7 @@ export const PrincipalColorForm = ({
 }: PrincipalColorFormProps) => {
   return (
     <>
-      <h2 className="pl-4 pt-4 text-2xl font-bold">Cor principal</h2>
+      <h2 className="pl-4 pt-4 text-lg md:text-2xl font-bold">Cor principal</h2>
 
       <div
         style={{ backgroundColor: formData.game_color }}

@@ -13,7 +13,7 @@ const GameTextsForm = ({
 }: GameTextsFormProps) => {
   return (
     <>
-      <h2 className="text-2xl font-bold">Textos e informações</h2>
+      <h2 className="text-lg md:text-2xl font-bold">Textos e informações</h2>
 
       <div className="flex flex-col justify-between h-full gap-4 overflow-auto px-2">
         <TextInput
@@ -53,7 +53,9 @@ const GameTextsForm = ({
           placeholder="Insira mensagem positiva"
         />
         <div className="flex gap-2">
-          <label className="font-bold">Permitir convidados?</label>
+          <label className="text-sm md:text-base font-bold">
+            Permitir convidados?
+          </label>
           <input
             checked={formData.allow_guest}
             className=""

@@ -25,14 +25,14 @@ const UsersArea = () => {
   }, []);
 
   return (
-    <div className="w-full h-full pt-8 flex flex-col gap-8">
+    <div className="w-full h-full pt-8 flex flex-col gap-4 md:gap-8">
       <div>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-xl md:text-3xl font-bold">
           Atividades dos usuários nos jogos
         </h1>
-        <span className="text-slate-500">
-          Aqui você terá controle de quem jogou e qual foi a performance do
-          jogador!
+        <span className="text-sm md:text-base text-slate-500">
+          Aqui você terá controle de todos os usuários que se cadastraram nos
+          jogos!
         </span>
       </div>
       <CardsGroup props={games} />

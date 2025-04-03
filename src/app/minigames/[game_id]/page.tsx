@@ -8,11 +8,10 @@ import QuestionsForm from "@/components/Forms/QuestionsForm";
 import FullScreenLoading from "@/components/FullscreenLoading/FullScreenLoading";
 import SaveModal from "@/components/SaveModal/SaveModal";
 import Container from "@/components/UI/Container";
-import { SecondButton } from "@/components/UI/SecondButton";
 import { useGamesContext } from "@/contexts/GamesContext";
 import { CopyToClipboard } from "@/functions/CopyToClipboard";
 import { IGameConfig } from "@/interfaces/Games";
-import { Copy } from "lucide-react";
+import { Copy, Save } from "lucide-react";
 import React, { useEffect, useState } from "react";
 interface Props {
   params: { game_id: string };
@@ -109,13 +108,13 @@ function GamesAdminArea({ params }: Props) {
         onOpenChange={handleControlSaveModal}
       />
 
-      <div className="w-full h-full pt-8 gap-8 grid grid-cols-2">
-        <div className="col-span-2 flex items-center justify-between">
+      <div className="w-full h-full pt-8 gap-4 md:gap-8 md:grid md:grid-cols-2 flex flex-col">
+        <div className="col-span-2 flex flex-col md:flex-row md:items-center gap-4 justify-between">
           <div>
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-xl md:text-3xl font-bold">
               Gerenciamento do jogo: {gameConfig.game_name}
             </h1>
-            <span className="text-slate-500">
+            <span className="text-sm md:text-base text-slate-500">
               Modifique o jogo e suas peculiaridades!
             </span>
           </div>
@@ -132,11 +131,13 @@ function GamesAdminArea({ params }: Props) {
               />
             </div>
 
-            <SecondButton
+            <button
+              onClick={handleSendRequest}
               type="button"
-              action={handleSendRequest}
-              text="Salvar"
-            />
+              className="fixed z-20 bottom-16 md:bottom-4 right-4 bg-blue-500 rounded-full text-white p-4 hover:scale-110 transition-all shadow-md"
+            >
+              <Save className="md:h-8 md:w-8" />
+            </button>
           </div>
         </div>
 

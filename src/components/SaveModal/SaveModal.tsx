@@ -14,13 +14,23 @@ interface SaveModalProps {
 }
 
 const SaveModal = ({ isOpen, onOpenChange, formData }: SaveModalProps) => {
+  const [showLink, setShowLink] = useState<boolean>(false);
   return (
     <DialogDrawer
       isOpen={isOpen}
       onOpenChange={onOpenChange}
-      title="Deseja salvar as alterações?"
+      title={
+        !showLink
+          ? "Deseja salvar as alterações?"
+          : "Alterações efetuadas com sucesso!"
+      }
     >
-      <SaveModalArea formData={formData} onOpenChange={onOpenChange} />
+      <SaveModalArea
+        formData={formData}
+        onOpenChange={onOpenChange}
+        showLink={showLink}
+        setShowLink={setShowLink}
+      />
     </DialogDrawer>
   );
 };
@@ -28,12 +38,15 @@ const SaveModal = ({ isOpen, onOpenChange, formData }: SaveModalProps) => {
 const SaveModalArea = ({
   onOpenChange,
   formData,
+  showLink,
+  setShowLink,
 }: {
   onOpenChange: () => void;
   formData: IGameConfig;
+  showLink: boolean;
+  setShowLink: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [showLink, setShowLink] = useState<boolean>(false);
 
   const fetchGameConfigData = async () => {
     setLoading(true);
@@ -70,10 +83,10 @@ const SaveModalArea = ({
           </Button>
         </div>
       ) : (
-        <div className="h-[300px] flex flex-col w-full items-center justify-center gap-4">
+        <div className="h-[200px] flex flex-col w-full items-center justify-center gap-4">
           <Dices
             style={{ color: formData.game_color }}
-            className="w-24 h-24 animate-bounce"
+            className="w-24 h-24 animate-fadeIn"
           />
           <Button
             className="w-full"

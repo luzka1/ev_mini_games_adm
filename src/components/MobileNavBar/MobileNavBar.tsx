@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   Gamepad2,
   LayoutDashboard,
@@ -8,10 +7,9 @@ import {
   SunMoon,
   Users,
 } from "lucide-react";
-import Logo from "../UI/Logo";
-import Link from "next/link";
+import React, { useEffect } from "react";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+import Link from "next/link";
 
 const items = [
   { icon: <LayoutDashboard />, label: "Dashboard", href: "/" },
@@ -19,7 +17,7 @@ const items = [
   { icon: <Gamepad2 />, label: "Minigames", href: "/minigames" },
 ];
 
-export const Navbar = () => {
+const MobileNavBar = () => {
   const handleLogout = () => {
     Cookies.remove("token");
     location.reload();
@@ -51,33 +49,24 @@ export const Navbar = () => {
 
   const liClass =
     "flex items-center gap-4 font-medium text-slate-500 dark:text-white dark:hover:text-blue-500 transition-all cursor-pointer hover:text-blue-500 hover:font-bold";
+
   return (
-    <>
-      <div className="flex items-center justify-center">
-        <a href="/">
-          <Logo className="" />
-        </a>
-      </div>
-      <div className="my-8">
-        <ul className="flex flex-col py-6 gap-8">
-          {items.map((item, index) => (
-            <Link key={index} href={item.href}>
-              <li className={liClass}>
-                {item.icon} <span>{item.label}</span>
-              </li>
-            </Link>
-          ))}
-        </ul>
-        <hr />
-        <ul className="flex flex-col py-6 gap-8">
-          <li onClick={() => handleChangeTheme()} className={liClass}>
-            <SunMoon /> <span>Trocar tema</span>
-          </li>
-          <li onClick={() => handleLogout()} className={liClass}>
-            <LogOut /> <span>Sair</span>
-          </li>
-        </ul>
-      </div>
-    </>
+    <div className="w-screen p-4 h-[50px] bg-white/70 backdrop-blur-md border border-b-0 border-x-0 border-zinc-200 dark:border-zinc-700 border-t-1 dark:bg-zinc-950/70">
+      <ul className="flex flex-row w-full items-center h-full justify-between">
+        {items.map((item, index) => (
+          <Link key={index} href={item.href}>
+            <li className={liClass}>{item.icon}</li>
+          </Link>
+        ))}
+        <li onClick={() => handleChangeTheme()} className={liClass}>
+          <SunMoon />
+        </li>
+        <li onClick={() => handleLogout()} className={liClass}>
+          <LogOut />
+        </li>
+      </ul>
+    </div>
   );
 };
+
+export default MobileNavBar;

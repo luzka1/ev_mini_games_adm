@@ -12,7 +12,7 @@ export const TextInput = ({
   placeholder: string;
 }) => (
   <div>
-    <span className="font-bold">{label}</span>
+    <span className="text-sm md:text-base font-bold">{label}</span>
     <Input
       value={value}
       onChange={(e) => onChange(e.target.value)}

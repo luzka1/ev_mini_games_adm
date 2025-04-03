@@ -5,6 +5,7 @@ interface SecondButtonProps {
   className?: string;
   type: "submit" | "reset" | "button" | undefined;
   action: () => void;
+  icon?: React.ReactNode;
 }
 
 export const SecondButton = ({
@@ -12,6 +13,7 @@ export const SecondButton = ({
   className,
   type,
   action,
+  icon,
 }: SecondButtonProps) => {
   return (
     <button
@@ -19,7 +21,7 @@ export const SecondButton = ({
       type={type}
       className={`${className} flex items-center justify-center py-2 px-4 rounded-xl border-2 border-blue-500 font-bold text-blue-500 hover:border-transparent hover:bg-blue-500 hover:text-white transition-all`}
     >
-      {text}
+      {text} {icon && icon}
     </button>
   );
 };

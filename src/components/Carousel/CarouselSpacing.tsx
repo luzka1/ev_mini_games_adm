@@ -13,7 +13,7 @@ export function CarouselSpacing() {
   return (
     <Carousel className="w-full h-full">
       <CarouselContent className="-ml-1">
-        {Array.from({ length: 5 }).map((_, index) => (
+        {Array.from({ length: 3 }).map((_, index) => (
           <CarouselItem
             key={index}
             className="sm:basis-full md:basis-1/2 lg:basis-1/3"

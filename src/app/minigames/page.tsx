@@ -28,11 +28,11 @@ const MinigamesArea = () => {
   }, []);
 
   return (
-    <div className="w-full h-full pt-8 flex flex-col gap-8">
-      <div className="w-full flex justify-between">
+    <div className="w-full h-full pt-8 flex flex-col gap-4 md:gap-8">
+      <div className="w-full flex flex-col md:flex-row gap-2 justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Seus jogos ativos</h1>
-          <span className="text-slate-500">
+          <h1 className="text-xl md:text-3xl font-bold">Seus jogos ativos</h1>
+          <span className="text-sm md:text-base text-slate-500">
             Aqui você encontrará os jogos que já estão em circulação!
           </span>
         </div>

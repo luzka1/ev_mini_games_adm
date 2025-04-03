@@ -96,8 +96,10 @@ export const RecentsList = ({ title, description }: RecentsListProps) => {
   return (
     <Container className="w-full h-full p-4 flex flex-col">
       <div>
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <p className="text-md text-muted-foreground">{description}</p>
+        <h1 className="text-lg md:text-2xl font-bold">{title}</h1>
+        <p className="text-sm md:text-base text-muted-foreground">
+          {description}
+        </p>
       </div>
 
       <ul className="flex flex-col gap-4 mt-4 h-full overflow-y-auto">
@@ -122,8 +124,10 @@ export const RecentsList = ({ title, description }: RecentsListProps) => {
                   <User />
                 </div>
                 <div className="flex flex-col leading-none tracking-tight">
-                  <span className="text-xl font-bold">{item.name}</span>
-                  <p className="text-md text-muted-foreground">
+                  <span className="text-base md:text-xl font-bold">
+                    {item.name}
+                  </span>
+                  <p className="text-base text-muted-foreground">
                     {format(new Date(item.played_date), "dd/MM/yyyy")} -
                     {format(new Date(item.createdAt), "hh:mm")}
                   </p>

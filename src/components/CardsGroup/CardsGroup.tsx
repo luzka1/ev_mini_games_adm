@@ -31,11 +31,13 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
         >
           <div
             style={{ backgroundColor: item.game_color }}
-            className="rounded-xl h-[350px] w-full flex items-end shadow-xl hover:scale-105 transition-all"
+            className="rounded-xl h-[250px] md:h-[350px] w-full flex items-end shadow-xl hover:scale-105 transition-all"
           >
             <div className="bg-white dark:bg-zinc-950 h-1/3 max-h-1/3 w-full rounded-b-xl py-2 px-4 flex overflow-auto">
               <div>
-                <span className="text-xl font-bold">{item.game_name}</span>
+                <span className="text-lg md:text-xl font-bold">
+                  {item.game_name}
+                </span>
                 <p className="text-sm text-muted-foreground">
                   {item.game_desc}
                 </p>

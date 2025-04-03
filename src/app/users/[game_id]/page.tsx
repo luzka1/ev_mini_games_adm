@@ -51,20 +51,20 @@ const UsersAdminArea = ({ params }: Props) => {
     players && (
       <div className="w-full h-full pt-8 flex flex-col gap-8">
         <div>
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-xl md:text-3xl font-bold">
             Controle de usuários de {players.game_name}
           </h1>
-          <span className="text-slate-500">
+          <span className="text-slate-500 text-sm md:text-base">
             Veja todos os usuários que se cadastraram no jogo
           </span>
         </div>
 
         <Container className="w-full h-full">
-          <div className="border-b-2 mx-4 py-4 flex items-center text-muted-foreground justify-between">
-            <div className="flex items-center gap-4">
+          <div className="border-b-2 mx-4 py-4 flex items-center text-muted-foreground gap-4 justify-between">
+            <div className="flex items-center gap-2 md:gap-4">
               Mostar{" "}
               <Input
-                className="w-20 px-2"
+                className="w-12 md:w-20 px-2"
                 type="number"
                 value={entries}
                 min={0}
@@ -83,7 +83,7 @@ const UsersAdminArea = ({ params }: Props) => {
             </div>
           </div>
 
-          <div className="px-4 py-6">
+          <div className="px-4 py-6 overflow-x-auto">
             <PlayersTable players={players.players} entries={entries} />
           </div>
         </Container>

@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { PageLayout } from "@/app/pageLayout";
 import { IGameConfig } from "@/interfaces/Games";
-import { SecondButton } from "@/components/UI/SecondButton";
 import Container from "@/components/UI/Container";
 import GameTextsForm from "@/components/Forms/GameTextsForm";
 import { PrincipalColorForm } from "@/components/Forms/PrincipalColorForm";
 import QuestionsForm from "@/components/Forms/QuestionsForm";
 import ErrorMessageModal from "@/components/ErrorMessageModal/ErrorMessageModal";
 import RequestGameModal from "@/components/RequestGameModal/RequestGameModal";
+import { Save } from "lucide-react";
 
 export default function Minigames() {
   return (
@@ -114,22 +114,21 @@ function NewMiniGameArea() {
         onOpenChange={handleControlRequestModal}
       />
 
-      <div className="w-full h-full pt-8 gap-8 grid grid-cols-2">
-        <div className="col-span-2 flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Solicitação de novo jogo</h1>
-            <span className="text-slate-500">
-              Crie um jogo com suas especificações!
-            </span>
-          </div>
-          <div className="flex gap-4">
-            <SecondButton
-              type="button"
-              action={handleSendRequest}
-              text="Solicitar"
-            />
-          </div>
+      <div className="w-full h-full pt-8 gap-4 md:gap-8 md:grid md:grid-cols-2 flex flex-col">
+        <div className="col-span-2">
+          <h1 className="text-3xl font-bold">Solicitação de novo jogo</h1>
+          <span className="text-slate-500">
+            Crie um jogo com suas especificações!
+          </span>
         </div>
+
+        <button
+          onClick={handleSendRequest}
+          type="button"
+          className="fixed z-20 bottom-16 md:bottom-4 right-4 bg-blue-500 rounded-full text-white p-4 hover:scale-110 transition-all shadow-md"
+        >
+          <Save className="md:h-8 md:w-8" />
+        </button>
 
         <Container className="p-4 flex flex-col gap-4 h-[408px]">
           <GameTextsForm

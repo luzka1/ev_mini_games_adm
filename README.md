@@ -4,12 +4,12 @@
 Sistema de gerenciamento de dados de jogos para eventos ou pesquisa de campo.
 
 ## 🚀 Tecnologias Utilizadas
-- [ ] NextJS v14
-- [ ] API Routes (Next)
-- [ ] Typescript
-- [ ] TailwindCSS
-- [ ] ShadCN
-- [ ] Parse
+- [x] NextJS v14
+- [x] API Routes (Next)
+- [x] Typescript
+- [x] TailwindCSS
+- [x] ShadCN
+- [x] Parse
 
 ## 💭 Próximas Atualizações
 - [ ] Controle de dados de diversos tipos de jogos

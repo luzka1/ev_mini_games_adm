@@ -1,6 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { TextInput } from "../UI/TextInput";
 import { IGameConfig } from "@/interfaces/Games";
+import { Button } from "../UI/button";
+import GameTextsDialog from "../GameTextsDialog/GameTextsDialog";
 
 interface GameTextsFormProps {
   formData: IGameConfig;
@@ -11,8 +15,21 @@ const GameTextsForm = ({
   formData,
   handleChangeFormData,
 }: GameTextsFormProps) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleOpenChange = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
+      <GameTextsDialog
+        isOpen={isModalOpen}
+        onOpenChange={handleOpenChange}
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
+
       <h2 className="text-lg md:text-2xl font-bold">Textos e informações</h2>
 
       <div className="flex flex-col justify-between h-full gap-4 overflow-auto px-2">
@@ -34,36 +51,11 @@ const GameTextsForm = ({
           onChange={(value) => handleChangeFormData("company_name", value)}
           placeholder="Insira o nome da empresa (ficará na tela inicial do jogo)"
         />
-        <TextInput
-          label="Mensagem negativa (Menos que 25% de acerto das questões) *"
-          value={formData.negative_message}
-          onChange={(value) => handleChangeFormData("negative_message", value)}
-          placeholder="Insira a mensagem negativa"
-        />
-        <TextInput
-          label="Mensagem neutra (Até 75% de acerto das questões) *"
-          value={formData.neutral_message}
-          onChange={(value) => handleChangeFormData("neutral_message", value)}
-          placeholder="Insira a mensagem neutra"
-        />
-        <TextInput
-          label="Mensagem positiva (Maior que 75% de acerto das questões) *"
-          value={formData.positive_message}
-          onChange={(value) => handleChangeFormData("positive_message", value)}
-          placeholder="Insira mensagem positiva"
-        />
-        <div className="flex gap-2">
-          <label className="text-sm md:text-base font-bold">
-            Permitir convidados?
-          </label>
-          <input
-            checked={formData.allow_guest}
-            className=""
-            type="checkbox"
-            onChange={(e) =>
-              handleChangeFormData("allow_guest", e.target.checked)
-            }
-          />
+
+        <div className="flex w-full justify-end">
+          <Button onClick={handleOpenChange} className="w-full lg:w-60">
+            Mais informações
+          </Button>
         </div>
       </div>
     </>

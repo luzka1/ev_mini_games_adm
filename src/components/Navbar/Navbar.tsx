@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Gamepad2,
   LayoutDashboard,
@@ -10,8 +10,10 @@ import {
 } from "lucide-react";
 import Logo from "../UI/Logo";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Cookies from "js-cookie";
+import LogoutDialog from "../LogoutDialog/LogoutDialog";
 
 const items = [
   { icon: <LayoutDashboard />, label: "Dashboard", href: "/" },
@@ -20,9 +22,16 @@ const items = [
 ];
 
 export const Navbar = () => {
+  const pathName = usePathname();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleOpenDialog = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const handleLogout = () => {
     Cookies.remove("token");
-    location.reload();
+    window.location.reload();
   };
 
   const handleChangeTheme = () => {
@@ -53,6 +62,12 @@ export const Navbar = () => {
     "flex items-center gap-4 font-medium text-slate-500 dark:text-white dark:hover:text-blue-500 transition-all cursor-pointer hover:text-blue-500 hover:font-bold";
   return (
     <>
+      <LogoutDialog
+        isDialogOpen={isModalOpen}
+        onOpenChange={handleOpenDialog}
+        handleLogout={handleLogout}
+      />
+
       <div className="flex items-center justify-center">
         <a href="/">
           <Logo className="" />
@@ -63,7 +78,28 @@ export const Navbar = () => {
           {items.map((item, index) => (
             <Link key={index} href={item.href}>
               <li className={liClass}>
-                {item.icon} <span>{item.label}</span>
+                <div
+                  className={
+                    pathName.startsWith(item.href) && item.href !== "/"
+                      ? "text-blue-500 font-bold"
+                      : pathName === "/" && item.href === "/"
+                      ? "text-blue-500 font-bold"
+                      : ""
+                  }
+                >
+                  {item.icon}
+                </div>
+                <span
+                  className={
+                    pathName.startsWith(item.href) && item.href !== "/"
+                      ? "text-blue-500 font-bold"
+                      : pathName === "/" && item.href === "/"
+                      ? "text-blue-500 font-bold"
+                      : ""
+                  }
+                >
+                  {item.label}
+                </span>
               </li>
             </Link>
           ))}
@@ -73,7 +109,7 @@ export const Navbar = () => {
           <li onClick={() => handleChangeTheme()} className={liClass}>
             <SunMoon /> <span>Trocar tema</span>
           </li>
-          <li onClick={() => handleLogout()} className={liClass}>
+          <li onClick={() => handleOpenDialog()} className={liClass}>
             <LogOut /> <span>Sair</span>
           </li>
         </ul>

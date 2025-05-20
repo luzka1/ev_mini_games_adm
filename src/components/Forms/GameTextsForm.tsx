@@ -23,16 +23,18 @@ const GameTextsForm = ({
 
   return (
     <>
-      <GameTextsDialog
-        isOpen={isModalOpen}
-        onOpenChange={handleOpenChange}
-        formData={formData}
-        handleChangeFormData={handleChangeFormData}
-      />
-
-      <h2 className="text-lg md:text-2xl font-bold">Textos e informações</h2>
+      <div className="absolute">
+        <GameTextsDialog
+          isOpen={isModalOpen}
+          onOpenChange={handleOpenChange}
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
+        />
+      </div>
 
       <div className="flex flex-col justify-between h-full gap-4 overflow-auto px-2">
+        <h2 className="text-lg md:text-2xl font-bold">Textos e informações</h2>
+
         <TextInput
           label="Nome do jogo *"
           value={formData.game_name}

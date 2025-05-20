@@ -30,7 +30,6 @@ const GameTextsDialog = ({
 };
 
 const DialogLayoutArea = ({
-  isOpen,
   onOpenChange,
   formData,
   handleChangeFormData,

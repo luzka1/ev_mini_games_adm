@@ -36,16 +36,13 @@ const MinigamesArea = () => {
             Aqui você encontrará os jogos que já estão em circulação!
           </span>
         </div>
-        <div>
-          <a href="/minigames/new-minigame">
-            <button
-              type="button"
-              className="flex gap-2 p-4 rounded-xl border-2 border-blue-500 font-bold text-blue-500 hover:border-transparent hover:bg-blue-500 hover:text-white transition-all"
-            >
-              Solicitar minigame <PlusIcon />
-            </button>
-          </a>
-        </div>
+
+        <a
+          href="/minigames/new-minigame"
+          className="fixed z-20 bottom-16 md:bottom-4 right-4 bg-blue-500 rounded-full text-white p-4 hover:scale-110 transition-all shadow-md"
+        >
+          <PlusIcon className="md:h-8 md:w-8" />
+        </a>
       </div>
 
       <CardsGroup props={games} />

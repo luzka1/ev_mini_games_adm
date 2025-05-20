@@ -68,7 +68,9 @@ const DialogLayoutArea = ({
         />
       </div>
 
-      <Button onClick={onOpenChange}>Ok</Button>
+      <Button className="text-white" onClick={onOpenChange}>
+        Ok
+      </Button>
     </>
   );
 };

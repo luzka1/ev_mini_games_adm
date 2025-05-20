@@ -30,7 +30,7 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
               : `/minigames/${item.game_id}`
           }
         >
-          <div className="rounded-[42px] h-[250px] md:h-[450px] bg-white dark:bg-zinc-950 w-full flex flex-col shadow-xl hover:scale-105 transition-all p-2">
+          <div className="rounded-[42px] h-[450px] bg-white dark:bg-zinc-950 w-full flex flex-col shadow-xl hover:scale-105 transition-all p-2">
             <div
               style={{ backgroundColor: item.game_color }}
               className="h-3/5 w-full rounded-[36px]"
@@ -47,7 +47,9 @@ export const CardsGroup = ({ props }: CardsGroupProps) => {
               </div>
 
               <div className="flex w-full justify-end">
-                <Button className="rounded-3xl">Mais informações</Button>
+                <Button className="rounded-3xl text-white">
+                  Mais informações
+                </Button>
               </div>
             </div>
           </div>

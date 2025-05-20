@@ -55,7 +55,10 @@ const GameTextsForm = ({
         />
 
         <div className="flex w-full justify-end">
-          <Button onClick={handleOpenChange} className="w-full lg:w-60">
+          <Button
+            onClick={handleOpenChange}
+            className="w-full lg:w-60 text-white"
+          >
             Mais informações
           </Button>
         </div>

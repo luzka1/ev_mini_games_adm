@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../UI/button";
 import IconInput from "../UI/IconInput";
 import { KeyRound, MailIcon } from "lucide-react";
@@ -36,6 +36,21 @@ const LoginForm = () => {
     }
   };
 
+  const accessDemoMode = () => {
+    Cookies.set("token", "logged");
+    navigate.push("/");
+  };
+
+  // funcao para atualizar o modo escuro
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "dark",
+      localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+    );
+  }, []);
+
   return (
     <form
       className="h-full flex justify-center items-center flex-col w-full gap-6"
@@ -57,8 +72,20 @@ const LoginForm = () => {
         icon={<KeyRound className="text-blue-500" />}
         required
       />
-      <Button disabled={loading} className="w-full" type="submit">
+      <Button
+        disabled={loading}
+        className="w-full dark:text-white"
+        type="submit"
+      >
         Acessar
+      </Button>
+      <Button
+        disabled={loading}
+        className="w-full bg-zinc-400 hover:bg-zinc-500 dark:bg-white dark:hover:bg-white/90"
+        type="button"
+        onClick={accessDemoMode}
+      >
+        Modo de demonstração
       </Button>
     </form>
   );

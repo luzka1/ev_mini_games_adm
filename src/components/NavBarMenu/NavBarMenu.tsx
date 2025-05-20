@@ -8,6 +8,7 @@ import Container from "../UI/Container";
 
 const NavBarMenu = () => {
   const { width } = useWindowSize();
+
   return (
     <>
       {width < 1024 ? (
